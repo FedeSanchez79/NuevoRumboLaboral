@@ -8,7 +8,6 @@
     <script src="../js/main.js" defer></script>
     <title>Nuevo Rumbo Laboral - Contacto</title>
 </head>
-<body >
 <body class="body">
     <header class="header">
         <img src="../assets/images/Logo 2.jpg" alt="imagen del icono de Nuevo Rumbo Laboral" class="logo">
@@ -22,18 +21,20 @@
             
         </div>
     </header>
-    <main>
-        <h1>Contacto</h1>
-        <p>Si tienes alguna pregunta o inquietud, no dudes en ponerte en contacto conmigo a través del siguiente formulario:</p>
-        <form action="#" method="post">
-            <label for="name">Nombre:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Correo electrónico:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Mensaje:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
+    <main class="centrado">
+        <div class="contacto-container">
+            <h1>Contacto</h1>
+            <p>Si tienes alguna pregunta o inquietud, no dudes en ponerte en contacto conmigo a través del siguiente formulario:</p>
+            <form action="#" method="post" class="formulario-contacto">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
     </main>
 </body>
 </html>

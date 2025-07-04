@@ -8,8 +8,9 @@ CORS(app)  # Permitir CORS para que el frontend pueda hacer peticiones desde otr
 
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
-SMTP_USER = "tu_email@gmail.com"          # Cambiar por tu email Gmail
-SMTP_PASSWORD = "tu_password_o_app_pass"  # Contraseña o contraseña de aplicación
+SMTP_USER = "fedesanchez@gmail.com"
+SMTP_PASSWORD = "dkqp prvz czwn lwnp"  # ← tu contraseña de aplicación
+
 
 DESTINO = "fedesanchez@gmail.com"         # Email que recibe los mensajes
 

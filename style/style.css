@@ -197,3 +197,21 @@ main #mensaje {
   margin-bottom: 15px;
   line-height: 1.5;
 }
+
+input.error,
+textarea.error {
+  border: 2px solid #dc3545;
+  background-color: #fff0f0;
+}
+
+small.error-message {
+  color: #dc3545;
+  font-size: 0.8em;
+  display: none;
+  margin-bottom: 10px;
+}
+
+small.error-message.visible {
+  display: block;
+}
+

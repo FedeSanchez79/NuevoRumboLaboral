@@ -258,7 +258,7 @@ footer {
 /* -------- MEDIA QUERIES -------- */
 
 @media screen and (max-height: 450px) and (orientation: landscape) {
-  
+
   #mensaje {
     padding-top: 20px;
     padding-bottom: 80px;
@@ -298,8 +298,8 @@ footer {
   }
 
   .social-icons img {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
   }
 
   .contacto-container {
@@ -328,8 +328,8 @@ footer {
   }
 
   .social-icons img {
-    width: 20px;
-    height: 20px;
+    width: 35px;
+    height: 35px;
   }
 }
 

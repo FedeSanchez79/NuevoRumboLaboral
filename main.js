@@ -59,6 +59,4 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Servidor Express corriendo en http://0.0.0.0:${PORT}`);
 });
 
-console.log('USER:', process.env.SMTP_USER);
-console.log('PASS:', process.env.SMTP_PASS ? 'CARGADA ✅' : 'NO CARGADA ❌');
 

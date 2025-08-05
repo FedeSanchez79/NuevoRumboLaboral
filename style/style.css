@@ -202,13 +202,13 @@ main #mensaje {
 
 .sobre-mi-texto h1 {
   margin-bottom: 20px;
-  text-align: right;
+  text-align: center;
 }
 
 .sobre-mi-texto p {
   margin-bottom: 15px;
   line-height: 1.5;
-  text-align: right;
+  text-align: justify;
 }
 
 /* -------- FORM VALIDATION -------- */
@@ -256,6 +256,15 @@ footer {
 }
 
 /* -------- MEDIA QUERIES -------- */
+
+@media screen and (max-height: 450px) and (orientation: landscape) {
+  
+  #mensaje {
+    padding-top: 20px;
+    padding-bottom: 80px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -291,6 +300,19 @@ footer {
   .social-icons img {
     width: 36px;
     height: 36px;
+  }
+
+  .contacto-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .formulario-contacto {
+    width: 100%;
+    max-width: 500px;
   }
 }
 

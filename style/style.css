@@ -45,31 +45,32 @@ img {
   overflow: hidden;
 }
 
-/* -------- ENCABEZADO -------- */
+/* -------- HEADER -------- */
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center;       
   padding: 20px 30px;
   height: 100px;
+  gap: 40px;                
   position: relative;
   z-index: 10;
-  flex-wrap: wrap;
-  text-align: center;
+  flex-wrap: nowrap;
+  text-align: left;
 }
 
 .logo {
   height: var(--tam-logo);
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 .category-menu {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 10px;
-  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: auto;
 }
 
 .category-menu a,
@@ -101,14 +102,23 @@ main #mensaje {
 }
 
 /* -------- CONTACTO -------- */
-.contacto-container,
-.formulario-contacto {
+.centrado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: calc(100vh - 120px); 
+}
+
+.contacto-container {
   background-color: var(--color-fondo-blanco);
   border-radius: var(--radio-borde);
-  box-shadow: var(--sombra-box);
-  width: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  border: 1.5px solid rgba(0, 0, 0, 0.25);   
   max-width: 500px;
+  width: 100%;
   padding: 30px;
+  box-sizing: border-box;
   text-align: left;
 }
 
@@ -220,11 +230,15 @@ small.error-message.visible {
 }
 
 /* -------- FOOTER -------- */
-.footer-content {
+footer {
+  width: 100%;
   background-color: rgba(204, 200, 200, 0.1);
-  padding: 5px;
-  font-size: 0.9em;
-  color: #6c757d;
+  padding: 10px 0;
+}
+
+.footer-content {
+  margin: 0 auto;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -232,16 +246,13 @@ small.error-message.visible {
   flex-wrap: wrap;
   font-family: var(--fuente-base);
   font-weight: 300;
+  color: #6c757d;
+  font-size: 0.9em;
 }
 
 .social-icons {
   display: flex;
   gap: 15px;
-}
-
-.social-icons img {
-  width: 24px;
-  height: 24px;
 }
 
 /* -------- MEDIA QUERIES -------- */
@@ -250,6 +261,7 @@ small.error-message.visible {
     flex-direction: column;
     height: auto;
     padding: 15px;
+    text-align: center;
   }
 
   .logo {
@@ -260,6 +272,7 @@ small.error-message.visible {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    width: 100%;
   }
 
   main #mensaje {
@@ -302,15 +315,5 @@ small.error-message.visible {
   main #mensaje {
     font-size: 2.5em;
     margin-left: 100px;
-  }
-
-  .footer-content {
-    max-width: var(--ancho-maximo);
-    margin: 0 auto;
-  }
-
-  .social-icons img {
-    width: 24px;
-    height: 24px;
   }
 }

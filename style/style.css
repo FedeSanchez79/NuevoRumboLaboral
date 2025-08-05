@@ -13,6 +13,7 @@
   --ancho-maximo: 1200px;
 }
 
+/* -------- RESET -------- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -44,13 +45,7 @@ img {
   overflow: hidden;
 }
 
-.centrado {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
+/* -------- ENCABEZADO -------- */
 .header {
   display: flex;
   justify-content: space-between;
@@ -59,6 +54,8 @@ img {
   height: 100px;
   position: relative;
   z-index: 10;
+  flex-wrap: wrap;
+  text-align: center;
 }
 
 .logo {
@@ -69,6 +66,10 @@ img {
 .category-menu {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+  width: 100%;
 }
 
 .category-menu a,
@@ -76,11 +77,6 @@ img {
   text-decoration: none;
   color: var(--color-texto);
   font-weight: bold;
-}
-
-.header nav {
-  display: flex;
-  gap: 30px;
 }
 
 .header nav a::after {
@@ -96,6 +92,7 @@ img {
   width: 100%;
 }
 
+/* -------- MENSAJE INDEX -------- */
 main #mensaje {
   margin: 250px 0 0 50px;
   text-align: left;
@@ -103,6 +100,7 @@ main #mensaje {
   color: var(--color-texto);
 }
 
+/* -------- CONTACTO -------- */
 .contacto-container,
 .formulario-contacto {
   background-color: var(--color-fondo-blanco);
@@ -160,6 +158,7 @@ main #mensaje {
   background-color: var(--color-primario-hover);
 }
 
+/* -------- SOBRE MI -------- */
 .sobre-mi-main {
   display: flex;
   justify-content: center;
@@ -202,6 +201,7 @@ main #mensaje {
   text-align: right;
 }
 
+/* -------- FORM VALIDATION -------- */
 input.error,
 textarea.error {
   border: 2px solid var(--color-borde-form-error);
@@ -219,6 +219,7 @@ small.error-message.visible {
   display: block;
 }
 
+/* -------- FOOTER -------- */
 .footer-content {
   background-color: rgba(204, 200, 200, 0.1);
   padding: 5px;
@@ -238,47 +239,27 @@ small.error-message.visible {
   gap: 15px;
 }
 
+.social-icons img {
+  width: 24px;
+  height: 24px;
+}
+
+/* -------- MEDIA QUERIES -------- */
 @media screen and (max-width: 768px) {
   .header {
     flex-direction: column;
     height: auto;
     padding: 15px;
-    text-align: center;
   }
 
   .logo {
     height: 50px;
   }
 
-  .menu-toggle {
-    display: flex;
+  .category-menu {
     flex-direction: column;
-    cursor: pointer;
-    gap: 5px;
-  }
-
-  .menu-toggle span {
-    width: 25px;
-    height: 3px;
-    background-color: var(--color-texto);
-    border-radius: 2px;
-  }
-
-  .header nav {
-    display: none;
-    flex-direction: column;
-    background: white;
-    position: absolute;
-    top: 100%;
-    right: 30px;
-    width: 200px;
-    padding: 15px;
-    box-shadow: var(--sombra-box);
-    border-radius: var(--radio-borde);
-  }
-
-  .header nav.active {
-    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
   main #mensaje {
@@ -294,21 +275,26 @@ small.error-message.visible {
     gap: 15px;
   }
 
-  .social-icons img,
-  .social-icons svg {
-    width: 20px;
-    height: 20px;
+  .social-icons img {
+    width: 36px;
+    height: 36px;
   }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   main #mensaje {
-    margin: 200px 40px 0;
-    font-size: 2em;
+    margin: 150px 40px 0;
+    font-size: 1.6em;
+    text-align: center;
   }
 
   .footer-content {
     padding: 10px 20px;
+  }
+
+  .social-icons img {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -321,5 +307,10 @@ small.error-message.visible {
   .footer-content {
     max-width: var(--ancho-maximo);
     margin: 0 auto;
+  }
+
+  .social-icons img {
+    width: 24px;
+    height: 24px;
   }
 }

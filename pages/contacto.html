@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Nuevo Rumbo Laboral - Te ayudamos a encontrar el trabajo que merecés.">
   <title>Nuevo Rumbo Laboral - Contacto</title>
   <link rel="stylesheet" href="../style/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
@@ -32,22 +33,35 @@
       <div class="contacto-container">
         <h1>Contacto</h1>
         <p>Si tenés alguna pregunta o inquietud, completá el siguiente formulario:</p>
-
-        <form id="contact-form" class="formulario-contacto">
-          <label for="name">Nombre:</label>
-          <input type="text" id="name" name="name" required />
-          <span id="error-name" class="error-text"></span>
-
-          <label for="email">Correo electrónico:</label>
-          <input type="email" id="email" name="email" required />
-          <span id="error-email" class="error-text"></span>
-
-          <label for="message">Mensaje:</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-          <span id="error-message" class="error-text"></span>
-
-          <button type="submit">Enviar</button>
-        </form>
+      <form id="contact-form">
+        <input type="text" name="nombre" placeholder="Tu nombre" required />
+        <input type="email" name="email" placeholder="Tu correo" required />
+        <textarea name="mensaje" placeholder="Tu mensaje" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <script>
+        const form = document.getElementById('contact-form');
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const data = {
+            nombre: form.nombre.value,
+            email: form.email.value,
+            mensaje: form.mensaje.value
+          };
+          try {
+            const response = await fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data),
+            });
+            const result = await response.json();
+            alert(result.message);
+            if (response.ok) form.reset();
+          } catch (error) {
+            alert('Error al enviar el mensaje.');
+          }
+        });
+      </script>
       </div>
     </div>
   </main>

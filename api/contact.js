@@ -5,7 +5,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { nombre, email, mensaje } = req.body;
+const { name, email, message } = req.body;
+
+if (!name || !email || !message) {
+  return res.status(400).json({ message: 'Faltan campos obligatorios' });
+}
+
 
   if (!nombre || !email || !mensaje) {
     return res.status(400).json({ message: 'Faltan campos obligatorios' });

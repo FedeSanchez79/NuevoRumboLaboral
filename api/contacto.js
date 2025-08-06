@@ -3,10 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const inputs = form.querySelectorAll('input, textarea');
 
   const errors = {
-    name: document.getElementById('error-name'),
-    email: document.getElementById('error-email'),
-    message: document.getElementById('error-message')
+    nombre: document.createElement('span'),
+    email: document.createElement('span'),
+    mensaje: document.createElement('span'),
   };
+
+  // Insertar spans de error al lado de cada input/textarea
+  inputs.forEach(input => {
+    const errorSpan = document.createElement('span');
+    errorSpan.classList.add('error-message');
+    input.parentNode.insertBefore(errorSpan, input.nextSibling);
+    errors[input.name] = errorSpan;
+  });
 
   inputs.forEach(input => {
     input.addEventListener('input', () => {
@@ -16,13 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
         errors[input.name].classList.remove('visible');
       } else {
         input.classList.add('error');
-        errors[input.name].textContent = `Este campo es obligatorio`;
+        errors[input.name].textContent = 'Este campo es obligatorio';
         errors[input.name].classList.add('visible');
       }
     });
   });
 
-  form.addEventListener('submit', async function (e) {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     let valid = true;
@@ -30,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     inputs.forEach(input => {
       if (!input.checkValidity()) {
         input.classList.add('error');
-        errors[input.name].textContent = `Este campo es obligatorio`;
+        errors[input.name].textContent = 'Este campo es obligatorio';
         errors[input.name].classList.add('visible');
         valid = false;
       } else {
@@ -53,9 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const data = {
-      name: form.name.value,
+      nombre: form.nombre.value,
       email: form.email.value,
-      message: form.message.value
+      mensaje: form.mensaje.value
     };
 
     try {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Nuevo Rumbo Laboral - Te ayudamos a encontrar el trabajo que merecés.">
+  <meta name="description" content="Nuevo Rumbo Laboral - Te ayudamos a encontrar el trabajo que merecés." />
   <title>Nuevo Rumbo Laboral - Contacto</title>
   <link rel="stylesheet" href="../style/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
@@ -14,7 +14,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-1RT2EHSXRM');
 </script>
 <body class="body">
@@ -27,61 +26,43 @@
     </nav>
     <div class="espacio"></div>
   </header>
+
   <div class="page-container">
-  <main class="main-content">
-    <div class="centrado">
-      <div class="contacto-container">
-        <h1>Contacto</h1>
-        <p>Si tenés alguna pregunta o inquietud, completá el siguiente formulario:</p>
-      <form id="contact-form">
-        <input type="text" name="nombre" placeholder="Tu nombre" required />
-        <input type="email" name="email" placeholder="Tu correo" required />
-        <textarea name="mensaje" placeholder="Tu mensaje" required></textarea>
-        <button type="submit">Enviar</button>
-      </form>
-      <script>
-        const form = document.getElementById('contact-form');
-        form.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const data = {
-            nombre: form.nombre.value,
-            email: form.email.value,
-            mensaje: form.mensaje.value
-          };
-          try {
-            const response = await fetch('/api/contact', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data),
-            });
-            const result = await response.json();
-            alert(result.message);
-            if (response.ok) form.reset();
-          } catch (error) {
-            alert('Error al enviar el mensaje.');
-          }
-        });
-      </script>
+    <main class="main-content">
+      <div class="centrado">
+        <div class="contacto-container">
+          <h1>Contacto</h1>
+          <p>Si tenés alguna pregunta o inquietud, completá el siguiente formulario:</p>
+
+          <form id="contact-form">
+            <input type="text" name="nombre" placeholder="Tu nombre" required />
+            <input type="email" name="email" placeholder="Tu correo" required />
+            <textarea name="mensaje" placeholder="Tu mensaje" required></textarea>
+            <button type="submit">Enviar</button>
+          </form>
+
+        </div>
       </div>
-    </div>
-  </main>
-  <footer>
-   <div class="footer-content">
-    <p>© 2025 Nuevo Rumbo Laboral. Todos los derechos reservados.</p>
-      <div class="social-icons">
-        <a href="https://www.facebook.com/NuevoRumboLaboral" target="_blank"><img src="../assets/icons/facebook.png" alt="logo facebook"></a>
-        <a href="https://www.instagram.com/nuevorumbolaboral/" target="_blank"><img src="../assets/icons/instagram.png" alt="logo instagram"></a>
-        <a href="https://www.linkedin.com/company/nuevorumbolaboral/" target="_blank"><img src="../assets/icons/linkedin.png" alt="logo linkedin"></a>
-        <a href="mailto:info@nuevorumbolaboral.com.ar"><img src="../assets/icons/mail.png" alt="logo mail"></a>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>© 2025 Nuevo Rumbo Laboral. Todos los derechos reservados.</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/NuevoRumboLaboral" target="_blank"><img src="../assets/icons/facebook.png" alt="logo facebook" /></a>
+          <a href="https://www.instagram.com/nuevorumbolaboral/" target="_blank"><img src="../assets/icons/instagram.png" alt="logo instagram" /></a>
+          <a href="https://www.linkedin.com/company/nuevorumbolaboral/" target="_blank"><img src="../assets/icons/linkedin.png" alt="logo linkedin" /></a>
+          <a href="mailto:info@nuevorumbolaboral.com.ar"><img src="../assets/icons/mail.png" alt="logo mail" /></a>
         </div>
         <div>
           <p>
-            Powered by <a href="https://github.com/FedeSanchez79" target="_blank"><img src="../assets/icons/logo_fede.png" alt="Logo Github fedesanchez"></a>
+            Powered by <a href="https://github.com/FedeSanchez79" target="_blank"><img src="../assets/icons/logo_fede.png" alt="Logo Github fedesanchez" /></a>
           </p>
         </div>
       </div>
-   </footer>
-  </div>       
+    </footer>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="../api/contacto.js"></script>
 </body>

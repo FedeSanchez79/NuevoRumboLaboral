@@ -33,14 +33,11 @@ app.post('/send', async (req, res) => {
     from: `"${name}" <${email}>`,    
     to: DESTINO,
     subject: 'Contacto desde página web',
-    text: `
-Nuevo mensaje de contacto:
-  
-Nombre: ${name}
-Email:  ${email}
-
-Mensaje:
-${message}
+    text: `Nuevo mensaje de contacto: 
+    Nombre: ${name} 
+    Email:  ${email}
+    Mensaje:
+    ${message}
     `
   };
 
@@ -49,7 +46,6 @@ ${message}
     console.log('✅ Mensaje enviado:', info.messageId);
     res.json({ message: 'Mensaje enviado con éxito!' });
   } catch (err) {
-    console.error('❌ Error al enviar correo:', err);
     res.status(500).json({ error: `Error al enviar el mensaje: ${err.message}` });
   }
 });

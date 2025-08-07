@@ -26,14 +26,12 @@
     </nav>
     <div class="espacio"></div>
   </header>
-
   <div class="page-container">
     <main class="main-content">
       <div class="centrado">
         <div class="contacto-container">
           <h1>Contacto</h1>
           <p>Si tenés alguna pregunta o inquietud, completá el siguiente formulario:</p>
-
           <form id="contact-form" class="formulario-contacto">
             <input type="text" name="nombre" placeholder="Tu nombre" required />
             <input type="email" name="email" placeholder="Tu correo" required />
@@ -44,12 +42,12 @@
             </div>
             <button type="submit">Enviar</button>
           </form>
-
-
         </div>
       </div>
+      <div class="mensaje-exito" id="mensaje-exito" style="display: none;">
+        <p>¡Gracias por contactarnos! Nos pondremos en contacto contigo pronto.</p>
+      </div>
     </main>
-
     <footer>
       <div class="footer-content">
         <p>© 2025 Nuevo Rumbo Laboral. Todos los derechos reservados.</p>
@@ -67,7 +65,6 @@
       </div>
     </footer>
   </div>
-
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="../js/contacto.js"></script>
 </body>

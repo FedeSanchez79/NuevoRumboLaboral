@@ -34,8 +34,14 @@ Este sitio fue creado para presentarme como profesional en el ámbito de las **R
 
 nuevo-rumbo-laboral/
 │
+├── 📁 api/
+│ └── contact.js
+│
 ├── 📁 assets/
 │ └── images/
+│
+├── 📁 js/
+│ └── contacto.js
 │
 ├── 📁 node_modules/
 │
@@ -43,17 +49,14 @@ nuevo-rumbo-laboral/
 │ ├── contacto.html
 │ └── sobre_mi.html
 │
-├── 📁 scripts/
-│ ├── main.js
-│ └── contacto.js
-│
 ├── 📁 style/
 │ └── style.css
 │
 ├── index.html
-├── package.json
+├── main.js
 ├── package-lock.json
-└── README.md
+├── package.json
+└── readme.md
 
 ## 🚀 Cómo ejecutar el proyecto
 
@@ -82,14 +85,6 @@ npm start
 - Campo **Email**: formato válido.
 - Campo **Mensaje**: mínimo de caracteres.
 - Estilos de error visibles en cada campo si hay problemas.
-
----
-
-## 🧭 Notas
-
-- Asegurate de abrir la página desde `http://localhost:5000/pages/contacto.html` y no desde `file:///`.
-- Para usar el backend, el archivo `main.js` debe estar correctamente enlazado y el servidor Express en ejecución.
-- El paquete `dotenv` se usa para futuras integraciones (por ejemplo, claves de servicios).
 
 ---
 

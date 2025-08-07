@@ -2,7 +2,6 @@
 import formidable from 'formidable';
 import nodemailer from 'nodemailer';
 import fs from 'fs';
-import path from 'path';
 
 export const config = {
   api: {
@@ -14,26 +13,19 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Método no permitido' });
   }
-
   const form = formidable({
     multiples: false,
     maxFileSize: 5 * 1024 * 1024, 
     keepExtensions: true
   });
-
   form.parse(req, async (err, fields, files) => {
     if (err) {
-      console.error('Error al parsear el formulario:', err);
       return res.status(500).json({ message: 'Error al procesar el formulario' });
     }
-
     const nombre = fields.nombre?.[0] || '';
     const email = fields.email?.[0] || '';
     const mensaje = fields.mensaje?.[0] || '';
-    const archivoCV = Array.isArray(files.cv) ? files.cv[0] : files.cv;
-
-    console.log('Campos:', { nombre, email, mensaje });
-    console.log('Archivo recibido:', archivoCV);
+    const archivoCV = Array.isArray(files.cv) ? files.cv[0] : files.cv
 
     if (!nombre || !email || !mensaje || !archivoCV) {
       return res.status(400).json({ message: 'Faltan campos obligatorios o archivo' });
@@ -42,7 +34,6 @@ export default async function handler(req, res) {
     try {
       const fileContent = fs.readFileSync(archivoCV.filepath);
       const fileName = archivoCV.originalFilename;
-
       const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
@@ -53,7 +44,7 @@ export default async function handler(req, res) {
         }
       });
 
-      await transporter.sendMail({
+      transporter.sendMail({
         from: `"Nuevo Rumbo Laboral" <${process.env.SMTP_USER}>`,
         to: process.env.SMTP_USER,
         subject: 'Nuevo mensaje de contacto con CV',

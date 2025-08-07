@@ -3,16 +3,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contact-form');
   const inputs = form.querySelectorAll('input:not([type="file"]), textarea, input[type="file"]');
-
   const errors = {};
-
   inputs.forEach(input => {
     const errorSpan = document.createElement('span');
     errorSpan.classList.add('error-message');
     input.parentNode.insertBefore(errorSpan, input.nextSibling);
     errors[input.name] = errorSpan;
   });
-
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       if (input.type === 'file') return; 
@@ -30,9 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     let valid = true;
-
     inputs.forEach(input => {
       if (input.type === 'file') {
         const file = input.files[0];

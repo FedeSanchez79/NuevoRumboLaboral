@@ -246,7 +246,6 @@ input[type="file"] {
 }
 
 /* -------- FORM VALIDATION -------- */
-
 input.error,
 textarea.error {
   border: 2px solid var(--color-borde-form-error);

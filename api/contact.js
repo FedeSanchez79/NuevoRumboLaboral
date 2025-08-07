@@ -23,12 +23,12 @@ export default async function handler(req, res) {
       return res.status(500).json({ message: 'Error al procesar el formulario' });
     }
 
-    console.log('fields:', fields);
-    console.log('files:', files);
-
-    const { nombre, email, mensaje } = fields;
+    const nombre = fields.nombre?.[0] || '';
+    const email = fields.email?.[0] || '';
+    const mensaje = fields.mensaje?.[0] || '';
     const cv = files.cv;
 
+    console.log('Campos:', { nombre, email, mensaje });
     console.log('Archivo recibido:', cv);
 
     if (!nombre || !email || !mensaje || !cv) {

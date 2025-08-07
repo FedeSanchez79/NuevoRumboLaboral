@@ -23,6 +23,9 @@ export default async function handler(req, res) {
       return res.status(500).json({ message: 'Error al procesar el formulario' });
     }
 
+    console.log('fields:', fields);
+    console.log('files:', files);
+
     const { nombre, email, mensaje } = fields;
     const cv = files.cv;
 

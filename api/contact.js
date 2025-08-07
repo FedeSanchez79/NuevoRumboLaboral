@@ -1,11 +1,11 @@
-import formidable from 'formidable';
+import { formidable } from 'formidable';
 import nodemailer from 'nodemailer';
 import fs from 'fs';
 
 export const config = {
   api: {
-    bodyParser: false
-  }
+    bodyParser: false,
+  },
 };
 
 export default async function handler(req, res) {
@@ -13,36 +13,32 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Método no permitido' });
   }
 
-  const form = new formidable.IncomingForm({ keepExtensions: true });
+  const form = formidable({ keepExtensions: true });
 
   form.parse(req, async (err, fields, files) => {
     if (err) {
       console.error('Error al parsear formulario:', err);
       return res.status(500).json({ message: 'Error al procesar el formulario' });
     }
-  
-    console.log('FIELDS:', fields);
-    console.log('FILES:', files); //
-    
+
     const { nombre, email, mensaje } = fields;
-    
     const cv = files.cv;
 
     if (!nombre || !email || !mensaje || !cv) {
       return res.status(400).json({ message: 'Faltan campos obligatorios o archivo' });
     }
 
-      const ALLOWED_EXTENSIONS = ['.pdf', '.doc', '.docx'];
-      const maxSize = 5 * 1024 * 1024; // 5 MB
+    const ALLOWED_EXTENSIONS = ['.pdf', '.doc', '.docx'];
+    const maxSize = 5 * 1024 * 1024; // 5 MB
 
-      const ext = cv.originalFilename?.split('.').pop().toLowerCase();
-      if (!ALLOWED_EXTENSIONS.includes(`.${ext}`)) {
-        return res.status(400).json({ message: 'Tipo de archivo no permitido' });
-      }
+    const ext = cv.originalFilename?.split('.').pop().toLowerCase();
+    if (!ALLOWED_EXTENSIONS.includes(`.${ext}`)) {
+      return res.status(400).json({ message: 'Tipo de archivo no permitido' });
+    }
 
-      if (cv.size > maxSize) {
-        return res.status(400).json({ message: 'El archivo excede el tamaño permitido (5 MB)' });
-      }
+    if (cv.size > maxSize) {
+      return res.status(400).json({ message: 'El archivo excede el tamaño permitido (5 MB)' });
+    }
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",

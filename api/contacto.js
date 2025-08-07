@@ -61,9 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const data = {
-      nombre: form.nombre.value,
+      name: form.nombre.value,
       email: form.email.value,
-      mensaje: form.mensaje.value
+      message: form.mensaje.value
     };
 
     try {

@@ -21,10 +21,11 @@ export default async function handler(req, res) {
       return res.status(500).json({ message: 'Error al procesar el formulario' });
     }
 
-    const { name, email, message } = fields;
+    const { nombre, email, mensaje } = fields;
+    
     const cv = files.cv;
 
-    if (!name || !email || !message || !cv) {
+    if (!nombre || !email || !mensaje || !cv) {
       return res.status(400).json({ message: 'Faltan campos obligatorios o archivo' });
     }
 

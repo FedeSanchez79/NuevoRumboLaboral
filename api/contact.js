@@ -1,6 +1,7 @@
-import { formidable } from 'formidable';
+import formidable from 'formidable';
 import nodemailer from 'nodemailer';
 import fs from 'fs';
+import path from 'path';
 
 export const config = {
   api: {
@@ -13,7 +14,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Método no permitido' });
   }
 
-  const form = formidable({ keepExtensions: true });
+  const form = new formidable.IncomingForm({ keepExtensions: true });
 
   form.parse(req, async (err, fields, files) => {
     if (err) {
@@ -24,6 +25,8 @@ export default async function handler(req, res) {
     const { nombre, email, mensaje } = fields;
     const cv = files.cv;
 
+    console.log('Archivo recibido:', cv);
+
     if (!nombre || !email || !mensaje || !cv) {
       return res.status(400).json({ message: 'Faltan campos obligatorios o archivo' });
     }
@@ -31,8 +34,10 @@ export default async function handler(req, res) {
     const ALLOWED_EXTENSIONS = ['.pdf', '.doc', '.docx'];
     const maxSize = 5 * 1024 * 1024; // 5 MB
 
-    const ext = cv.originalFilename?.split('.').pop().toLowerCase();
-    if (!ALLOWED_EXTENSIONS.includes(`.${ext}`)) {
+    const filename = cv.originalFilename || cv.newFilename || '';
+    const ext = path.extname(filename).toLowerCase();
+
+    if (!ALLOWED_EXTENSIONS.includes(ext)) {
       return res.status(400).json({ message: 'Tipo de archivo no permitido' });
     }
 
@@ -57,10 +62,10 @@ export default async function handler(req, res) {
       text: `Email: ${email}\n\nMensaje:\n${mensaje}`,
       attachments: [
         {
-          filename: cv.originalFilename,
-          content: fs.createReadStream(cv.filepath)
+          filename: filename,
+          content: fs.createReadStream(cv.filepath),
         }
-      ]
+      ],
     };
 
     try {

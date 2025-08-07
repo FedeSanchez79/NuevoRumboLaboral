@@ -14,7 +14,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Método no permitido' });
   }
 
-  const form = new formidable.IncomingForm({ keepExtensions: true });
+  const form = formidable({ keepExtensions: true });
+
 
   form.parse(req, async (err, fields, files) => {
     if (err) {

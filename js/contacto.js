@@ -2,11 +2,10 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contact-form');
-  const inputs = form.querySelectorAll('input, textarea');
+  const inputs = form.querySelectorAll('input:not([type="file"]), textarea, input[type="file"]');
 
   const errors = {};
 
-  // Insertar spans de error al lado de cada input/textarea
   inputs.forEach(input => {
     const errorSpan = document.createElement('span');
     errorSpan.classList.add('error-message');
@@ -16,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   inputs.forEach(input => {
     input.addEventListener('input', () => {
+      if (input.type === 'file') return; 
       if (input.checkValidity()) {
         input.classList.remove('error');
         errors[input.name].textContent = '';
@@ -34,7 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let valid = true;
 
     inputs.forEach(input => {
-      if (!input.checkValidity()) {
+      if (input.type === 'file') {
+        const file = input.files[0];
+        if (!file || !['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(file.type)) {
+          input.classList.add('error');
+          errors[input.name].textContent = 'Adjuntá un archivo válido (.pdf o .doc)';
+          errors[input.name].classList.add('visible');
+          valid = false;
+        } else {
+          input.classList.remove('error');
+          errors[input.name].textContent = '';
+          errors[input.name].classList.remove('visible');
+        }
+      } else if (!input.checkValidity()) {
         input.classList.add('error');
         errors[input.name].textContent = 'Este campo es obligatorio';
         errors[input.name].classList.add('visible');
@@ -58,17 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const data = {
-      name: form.nombre.value,
-      email: form.email.value,
-      message: form.mensaje.value
-    };
+    const formData = new FormData(form);
 
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: formData
       });
 
       const result = await res.json();

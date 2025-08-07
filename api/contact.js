@@ -1,42 +1,74 @@
-// /api/contact.js
-
+import formidable from 'formidable';
 import nodemailer from 'nodemailer';
+import fs from 'fs';
+
+export const config = {
+  api: {
+    bodyParser: false
+  }
+};
 
 export default async function handler(req, res) {
-  console.log("📩 Función contact.js llamada");
-
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Método no permitido' });
   }
 
-  const { name, email, message } = req.body;
+  const form = new formidable.IncomingForm({ keepExtensions: true });
 
-  if (!name || !email || !message) {
-    return res.status(400).json({ message: 'Faltan campos obligatorios' });
-  }
+  form.parse(req, async (err, fields, files) => {
+    if (err) {
+      console.error('Error al parsear formulario:', err);
+      return res.status(500).json({ message: 'Error al procesar el formulario' });
+    }
 
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true para puerto 465, false para 587
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
+    const { name, email, message } = fields;
+    const cv = files.cv;
+
+    if (!name || !email || !message || !cv) {
+      return res.status(400).json({ message: 'Faltan campos obligatorios o archivo' });
+    }
+
+      const ALLOWED_EXTENSIONS = ['.pdf', '.doc', '.docx'];
+      const maxSize = 5 * 1024 * 1024; // 5 MB
+
+      const ext = cv.originalFilename?.split('.').pop().toLowerCase();
+      if (!ALLOWED_EXTENSIONS.includes(`.${ext}`)) {
+        return res.status(400).json({ message: 'Tipo de archivo no permitido' });
+      }
+
+      if (cv.size > maxSize) {
+        return res.status(400).json({ message: 'El archivo excede el tamaño permitido (5 MB)' });
+      }
+
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    const mailOptions = {
+      from: `"Nuevo Rumbo Laboral" <${process.env.SMTP_USER}>`,
+      to: "info@nuevorumbolaboral.com.ar",
+      subject: `Nuevo contacto de ${name}`,
+      text: `Email: ${email}\n\nMensaje:\n${message}`,
+      attachments: [
+        {
+          filename: cv.originalFilename,
+          content: fs.createReadStream(cv.filepath)
+        }
+      ]
+    };
+
+    try {
+      await transporter.sendMail(mailOptions);
+      return res.status(200).json({ message: 'Mensaje enviado con éxito' });
+    } catch (error) {
+      console.error('❌ Error al enviar el mensaje:', error);
+      return res.status(500).json({ message: 'Error al enviar el mensaje' });
+    }
   });
-
-  const mailOptions = {
-    from: `"Nuevo Rumbo Laboral" <${process.env.SMTP_USER}>`,
-    to: "info@nuevorumbolaboral.com.ar",
-    subject: `Nuevo contacto de ${name}`,
-    text: `Email: ${email}\n\nMensaje:\n${message}`,
-  };
-
-  try {
-    await transporter.sendMail(mailOptions);
-    return res.status(200).json({ message: 'Mensaje enviado con éxito' });
-  } catch (error) {
-    console.error('❌ Error al enviar el mensaje:', error);
-    return res.status(500).json({ message: 'Error al enviar el mensaje' });
-  }
 }

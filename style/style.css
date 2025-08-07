@@ -168,6 +168,40 @@ main #mensaje {
   background-color: var(--color-primario-hover);
 }
 
+input[type="file"] {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+#cv {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #ff8668;
+  background-color: #fff5f5;
+  color: #333;
+  font-family: inherit;
+}
+
+#cv::file-selector-button {
+  background-color: #ff8668;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#cv::file-selector-button:hover {
+  background-color: #a8232c;
+}
+
 /* -------- SOBRE MI -------- */
 .sobre-mi-main {
   display: flex;
@@ -212,6 +246,7 @@ main #mensaje {
 }
 
 /* -------- FORM VALIDATION -------- */
+
 input.error,
 textarea.error {
   border: 2px solid var(--color-borde-form-error);

@@ -20,7 +20,10 @@ export default async function handler(req, res) {
       console.error('Error al parsear formulario:', err);
       return res.status(500).json({ message: 'Error al procesar el formulario' });
     }
-
+  
+    console.log('FIELDS:', fields);
+    console.log('FILES:', files); //
+    
     const { nombre, email, mensaje } = fields;
     
     const cv = files.cv;
@@ -54,8 +57,8 @@ export default async function handler(req, res) {
     const mailOptions = {
       from: `"Nuevo Rumbo Laboral" <${process.env.SMTP_USER}>`,
       to: "info@nuevorumbolaboral.com.ar",
-      subject: `Nuevo contacto de ${name}`,
-      text: `Email: ${email}\n\nMensaje:\n${message}`,
+      subject: `Nuevo contacto de ${nombre}`,
+      text: `Email: ${email}\n\nMensaje:\n${mensaje}`,
       attachments: [
         {
           filename: cv.originalFilename,

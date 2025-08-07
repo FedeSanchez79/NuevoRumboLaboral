@@ -1,12 +1,10 @@
+// contacto.js (frontend)
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contact-form');
   const inputs = form.querySelectorAll('input, textarea');
 
-  const errors = {
-    nombre: document.createElement('span'),
-    email: document.createElement('span'),
-    mensaje: document.createElement('span'),
-  };
+  const errors = {};
 
   // Insertar spans de error al lado de cada input/textarea
   inputs.forEach(input => {

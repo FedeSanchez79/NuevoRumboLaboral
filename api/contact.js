@@ -1,9 +1,10 @@
-// api/contact.js
+// /api/contact.js
 
 import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
   console.log("📩 Función contact.js llamada");
+
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Método no permitido' });
   }

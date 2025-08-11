@@ -1,7 +1,7 @@
 :root {
   --fuente-base: Arial, sans-serif;
-  --color-primario: #e60023;
-  --color-primario-hover: #cc001f;
+  --color-primario: #2b5a2f;
+  --color-primario-hover: #153a18;
   --color-texto: #757575;
   --color-titulos: #333;
   --color-fondo-blanco: #ffffff;
@@ -182,14 +182,14 @@ input[type="file"] {
   margin-top: 10px;
   padding: 10px;
   border-radius: 8px;
-  border: 2px solid #ff8668;
-  background-color: #fff5f5;
+  border: 2px solid #e6c639;
+  background-color: #fffcf5;
   color: #333;
   font-family: inherit;
 }
 
 #cv::file-selector-button {
-  background-color: #ff8668;
+  background-color: #e6c639;
   color: white;
   border: none;
   border-radius: 6px;
@@ -199,7 +199,7 @@ input[type="file"] {
 }
 
 #cv::file-selector-button:hover {
-  background-color: #a8232c;
+  background-color: #192c1c;
 }
 
 /* -------- SOBRE MI -------- */

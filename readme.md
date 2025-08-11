@@ -88,6 +88,14 @@ npm start
 
 ---
 
+## 🧭 Notas
+
+- Asegurate de abrir la página desde `http://localhost:5000/pages/contacto.html` y no desde `file:///`.
+- Para usar el backend, el archivo `main.js` debe estar correctamente enlazado y el servidor Express en ejecución.
+- El paquete `dotenv` se usa para futuras integraciones (por ejemplo, claves de servicios).
+
+---
+
 ## 📌 Autor
 
 **Federico Sánchez**  
